@@ -2,7 +2,7 @@ import requests
 import json
 
 # ChirpStack API server URL
-api_url = "http://192.168.189.11:8080/api"
+api_url = "http://wazigate.local:8080/api"
 
 # ChirpStack JWT API authentication token (replace with your token)
 api_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhcyIsImV4cCI6MTY5NjQ5NzI0OCwiaWQiOjEsImlzcyI6ImFzIiwibmJmIjoxNjk2NDEwODQ4LCJzdWIiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZG1pbiJ9.7ifZXr47tLiy_1qmo3-H1t6UHB7lecSI-iHUY6LyKGw"
