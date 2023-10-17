@@ -9,4 +9,4 @@ Seeedstudio SenseCap S2120 integration to WaziGate. Codecs, instructions, helper
 - Micro SD-Card
 
 ## How to set it up:
-You will find guides for the different guides for ABP and OTTA in this git.
+You will find guides for the different guides for [ABP](/SenseCapS2120_ABP_instructions.pdf) and [OTTA](/SenseCapS2120_OTAA_instructions.pdf) in this git.
