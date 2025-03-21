@@ -5,8 +5,7 @@ const new_codec_script = `
 function bytes2HexString(bytes) {
     return Array.from(bytes) // Ensure bytes is an array
         .map(byte => byte.toString(16).padStart(2, '0')) // Convert to hex
-        .join('')
-        .toUpperCase(); // Ensure uppercase output
+        .join('');
 }
 
 function Decode(port, bytes) {
