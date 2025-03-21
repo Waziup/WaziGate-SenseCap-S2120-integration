@@ -420,7 +420,7 @@ function base64Decode(input) {
 
 // Test function to test decoder => not needed in chirpstack!
 function main() {
-    base64 = "BGQBAQELAB4FoAEBATQAAASAAAAAAgFgAAAAACci" /*"BGQBAQELAAUFoAEBEi8AAAInAAAAAgDxAAAAACcu"/**"BGQBAQELAAUFoAEBBjIAAAHVAAAAAgEBAAAAACcy"*/ /**"AQD/NAAAAV4AAAACAPYAAAAAJzU="*/;
+    base64 = "AQDpKAAAAHYAAAACABIAAAAAJyk=" /*"BGQBAQELAAUFoAEBEi8AAAInAAAAAgDxAAAAACcu"/**"BGQBAQELAAUFoAEBBjIAAAHVAAAAAgEBAAAAACcy"*/ /**"AQD/NAAAAV4AAAACAPYAAAAAJzU="*/;
     
     // atob
     //const bytes = atob(base64).split("").map(c => c.charCodeAt(0).toString(16).toUpperCase());

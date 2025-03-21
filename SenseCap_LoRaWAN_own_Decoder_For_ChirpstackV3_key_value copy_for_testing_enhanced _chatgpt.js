@@ -16,7 +16,7 @@ function Decode(port, bytes) {
      })
    }
    return data
- }
+}
 
 function dataSplit(bytes) {
     var frameArray = []
@@ -384,13 +384,55 @@ function bytes2HexString(arrBytes) {
     return str
 }
 
+
+// also not needed in chirpstack, just for testing
+function base64Decode(input) {
+    const base64Chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+    const padding = (input.endsWith("==") ? 2 : (input.endsWith("=") ? 1 : 0));
+    const encodedLength = input.length;
+    const decodedLength = (encodedLength * 3 / 4) - padding;
+
+    const output = new Uint8Array(decodedLength);
+
+    let outputIndex = 0;
+    let inputIndex = 0;
+
+    while (inputIndex < encodedLength) {
+        const char1 = base64Chars.indexOf(input[inputIndex++]);
+        const char2 = base64Chars.indexOf(input[inputIndex++]);
+        const char3 = base64Chars.indexOf(input[inputIndex++]);
+        const char4 = base64Chars.indexOf(input[inputIndex++]);
+
+        const bits = (char1 << 18) | (char2 << 12) | (char3 << 6) | char4;
+        const byte1 = (bits >> 16) & 0xFF;
+        const byte2 = (bits >> 8) & 0xFF;
+        const byte3 = bits & 0xFF;
+
+        output[outputIndex++] = byte1;
+        if (outputIndex < decodedLength) output[outputIndex++] = byte2;
+        if (outputIndex < decodedLength) output[outputIndex++] = byte3;
+    }
+
+    return output;
+}
+
 // Test function to test decoder => not needed in chirpstack!
-// fetch("http://localhost:8080/devices/6503049b1d41c82596064e04",{method: "POST", body: new Uint8Array(atob("AQDSPAAAADMAAAACAV4AAAAAJt0=").split("").map(c => c.charCodeAt(0)))})
 function main() {
-    base64 = "AQDSPAAAADMAAAACAV4AAAAAJt0="/**"BGQBAQELAAUFoAEBEi8AAAInAAAAAgDxAAAAACcu"*//**"BGQBAQELAAUFoAEBBjIAAAHVAAAAAgEBAAAAACcy"*/ /**"AQD/NAAAAV4AAAACAPYAAAAAJzU="*/;
-    const bytes = atob(base64).split("").map(c => c.charCodeAt(0).toString(16).toUpperCase());
-    console.log(atob(base64).split("").map(c => c.charCodeAt(0)));
+    base64 = "dHJ1ZQ=="//"BAABAQELAAIFoAEA+CkAAABAAAAABg4=" /*"BGQBAQELAAUFoAEBEi8AAAInAAAAAgDxAAAAACcu"/**"BGQBAQELAAUFoAEBBjIAAAHVAAAAAgEBAAAAACcy"*/ /**"AQD/NAAAAV4AAAACAPYAAAAAJzU="*/;
+    
+    // atob
+    //const bytes = atob(base64).split("").map(c => c.charCodeAt(0).toString(16).toUpperCase());
+    
+    // buffer
+    //const base64Buffer = Buffer.from(base64, 'base64');
+    //const bytes = base64Buffer.toString('hex').toUpperCase().match(/.{1,2}/g);
+
+    //custom will work with quickjs
+    const bytes = base64Decode(base64);
+    
     json = Decode(0, bytes)
-    console.log("Output: ", json)
+    console.log("Output: ", JSON.stringify(json))
 }
 main()
