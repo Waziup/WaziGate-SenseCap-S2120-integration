@@ -22,8 +22,8 @@ It performs the following actions:
 ## Installation
 
 ```bash
-git clone https://github.com/<your-repo>/wazigate-provisioning.git
-cd wazigate-provisioning
+git https://github.com/Waziup/WaziGate-SenseCap-S2120-integration.git
+cd add_devices
 pip install -r requirements.txt
 ```
 
